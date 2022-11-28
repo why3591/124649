@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#3859DD"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/lyt_loc_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="21dp"
+                android:layout_marginTop="190px"
+                android:background="@drawable/location_card_bg"
+                android:orientation="vertical"
+                android:paddingHorizontal="21dp"
+                android:paddingVertical="50px">
+
+                <TextView
+                    android:id="@+id/tv_loc_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="加载中……"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_loc_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14px"
+                    android:text="其他"
+                    android:textColor="#EC9D54"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_loc_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13px"
+                    android:text="四川省/成都市/锦江区"
+                    android:textColor="@android:color/black"
+                    android:textSize="16.67sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_loc_addr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9px"
+                    android:text="加载中……"
+                    android:textColor="#969DA9"
+                    android:textSize="16.67sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="21dp"
+                android:layout_marginTop="36px"
+                android:background="@drawable/location_card_bg"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="50px">
+
+                <TextView
+                    android:id="@+id/tv_loc_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="180dp"
+                    android:text="习*泽"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_loc_card_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22px"
+                    android:minWidth="180dp"
+                    android:text="身份证号：11**************01"
+                    android:textColor="#ACACAC"
+                    android:textSize="14.67sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/fuck_loc_line" />
+
+                <TextView
+                    android:id="@+id/tv_loc_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="26px"
+                    android:text="2022-11-21 13:52:47"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/iv_fuck_loc"
+                    android:layout_width="479px"
+                    android:layout_height="479px"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/fuck_loc_green"
+                    android:visibility="visible" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="479px"
+                    android:background="@drawable/fuck_loc_green_bottom">
+
+                    <TextView
+                        android:id="@+id/tv_loc_time_refresh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginBottom="110px"
+                        android:text="10/15 03时"
+                        android:textColor="@android:color/white"
+                        android:textSize="9.67sp" />
+
+                    <!--#FF81d6b9-->
+                    <TextView
+                        android:id="@+id/btn_loc_time_refresh"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginBottom="30px"
+                        android:gravity="center"
+                        android:text="点击更新"
+                        android:textColor="#FF00a76f"
+                        android:textSize="13.67sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_loc_city_refresh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginEnd="96dp"
+                        android:layout_marginBottom="110px"
+                        android:text="10/15 03时"
+                        android:textColor="@android:color/white"
+                        android:textSize="9.67sp" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="155px"
+                android:layout_marginTop="108px"
+                android:src="@drawable/fuck_loc_bg_bottom" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <ImageView
+        android:id="@+id/iv_title"
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:src="@drawable/fuck_loc_title" />
+
+</FrameLayout>

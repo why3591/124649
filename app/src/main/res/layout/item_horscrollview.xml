@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/img_img"
+        android:layout_width="734px"
+        android:layout_height="16px"
+        android:scaleType="fitXY"
+        android:src="@drawable/fuck_green_code_marquee" />
+
+</LinearLayout>

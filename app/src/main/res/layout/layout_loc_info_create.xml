@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/edt_loc_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="名称（例：二仙桥）" />
+
+    <EditText
+        android:id="@+id/edt_loc_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="类型（例：景点）" />
+
+    <EditText
+        android:id="@+id/edt_loc_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="区域（例：四川省/成都市/武侯区）"
+        android:text="四川省/成都市/成华区" />
+
+    <EditText
+        android:id="@+id/edt_loc_addr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="地址（例：成华大道8964号）" />
+
+</LinearLayout>
