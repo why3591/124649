@@ -14,12 +14,22 @@ android {
         versionName project.VERSION_NAME
     }
 
+    signingConfigs {
+        release {
+            storeFile file("../fuckxmz.jks")
+            storePassword "198964"
+            keyAlias "key0"
+            keyPassword "198964"
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
+            signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
