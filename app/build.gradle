@@ -14,12 +14,22 @@ android {
         versionName project.VERSION_NAME
     }
 
+    signingConfigs {
+        release {
+            storeFile file("../fuckxmz.jks")
+            storePassword "198964"
+            keyAlias "key0"
+            keyPassword "198964"
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
+            signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -42,5 +52,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.blankj:utilcodex:1.30.1'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
-    implementation 'cn.yipianfengye.android:zxing-library:2.2'
+    implementation 'com.github.yuzhiqiang1993:zxing:2.2.9'
 }

@@ -24,12 +24,15 @@
                 android:paddingHorizontal="21dp"
                 android:paddingVertical="50px">
 
-                <TextView
+                <EditText
                     android:id="@+id/tv_loc_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:cursorVisible="false"
                     android:text="加载中……"
                     android:textColor="@android:color/black"
+                    android:textCursorDrawable="@null"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -53,19 +56,23 @@
                     android:textSize="16.67sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tv_loc_addr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="9px"
+                    android:background="@null"
+                    android:cursorVisible="false"
                     android:text="加载中……"
                     android:textColor="#969DA9"
+                    android:textCursorDrawable="@null"
                     android:textSize="16.67sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lyt_loc_info2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="21dp"

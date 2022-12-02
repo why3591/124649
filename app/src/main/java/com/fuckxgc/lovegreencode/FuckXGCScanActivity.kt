@@ -7,7 +7,9 @@ import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.PermissionUtils
 import com.blankj.utilcode.util.PermissionUtils.SimpleCallback
-import com.uuzuche.lib_zxing.activity.CaptureActivity
+import com.yzq.zxinglibrary.android.CaptureActivity
+import com.yzq.zxinglibrary.bean.ZxingConfig
+import com.yzq.zxinglibrary.common.Constant
 import kotlinx.coroutines.delay
 
 class FuckXGCScanActivity : AppCompatActivity() {
@@ -19,12 +21,18 @@ class FuckXGCScanActivity : AppCompatActivity() {
             .callback(object : SimpleCallback {
                 override fun onGranted() {
                     lifecycleScope.launchWhenCreated {
-                        startActivityForResult(
+                        startActivity(
                             Intent(
                                 this@FuckXGCScanActivity,
                                 CaptureActivity::class.java
-                            ), 8964
-                        )
+                            ).apply {
+                                putExtra(Constant.INTENT_ZXING_CONFIG, ZxingConfig().apply {
+                                    isPlayBeep = false
+                                    isShake = false
+                                    isFullScreenScan = true
+                                    isShowbottomLayout = false
+                                })
+                            })
                         delayStartLocActivity(2000L)
                     }
                 }

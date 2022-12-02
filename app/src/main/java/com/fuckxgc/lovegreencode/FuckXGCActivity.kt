@@ -6,13 +6,24 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import com.blankj.utilcode.constant.PermissionConstants
+import com.blankj.utilcode.util.PermissionUtils
+import com.blankj.utilcode.util.PermissionUtils.SimpleCallback
+import com.google.zxing.Result
+import com.yzq.zxinglibrary.common.Constant
+import com.yzq.zxinglibrary.decode.DecodeImgCallback
+import com.yzq.zxinglibrary.decode.DecodeImgThread
+import com.yzq.zxinglibrary.decode.ImageUtil
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -69,17 +80,41 @@ class FuckXGCActivity : AppCompatActivity() {
                 )
             )
         }
+        findViewById<ImageView>(R.id.iv_green_code)?.apply {
+            setOnLongClickListener {
+                PermissionUtils.permission(PermissionConstants.STORAGE)
+                    .callback(object : SimpleCallback {
+                        override fun onGranted() {
+                            startActivityForResult(
+                                Intent(Intent.ACTION_PICK).apply { this.type = "image/*" },
+                                Constant.REQUEST_IMAGE
+                            )
+                        }
+
+                        override fun onDenied() {
+                        }
+                    })
+                    .request()
+                true
+            }
+            lifecycleScope.launchWhenCreated {
+                withContext(Dispatchers.IO) {
+                    val str = prefs.getString(
+                        "spk_green_code_decode_str",
+                        null
+                    ) ?: return@withContext null
+                    return@withContext CodeCreator.createQRCode(str, 512, 512, null)
+                }?.let {
+                    this@apply.setImageBitmap(it)
+                }
+            }
+        }
         findViewById<View>(R.id.btn_scan)?.apply {
             setOnClickListener {
                 startActivity(Intent(this@FuckXGCActivity, FuckXGCScanActivity::class.java))
             }
             setOnLongClickListener {
-//                startActivity(
-//                    Intent.parseUri(
-//                        "alipays://platformapi/startapp?saId=10000007",
-//                        Intent.URI_INTENT_SCHEME
-//                    )
-//                )
+                // "alipays://platformapi/startapp?saId=10000007"
                 startActivity(Intent(this@FuckXGCActivity, FuckXGCLocationActivity::class.java))
                 true
             }
@@ -212,5 +247,37 @@ class FuckXGCActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.tv_time_date)?.text = sdf3.format(date)
             delay(1000L)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        data ?: return
+        if (requestCode == Constant.REQUEST_IMAGE && resultCode == RESULT_OK) {
+            val path = ImageUtil.getImageAbsolutePath(this, data.data)
+            DecodeImgThread(path, object : DecodeImgCallback {
+                override fun onImageDecodeSuccess(result: Result) {
+                    prefs.edit {
+                        putString("spk_green_code_decode_str", result.text)
+                    }
+                    val img = CodeCreator.createQRCode(result.text, 512, 512, null)
+                    lifecycleScope.launchWhenCreated {
+                        findViewById<ImageView>(R.id.iv_green_code)?.setImageBitmap(img)
+                    }
+                }
+
+                override fun onImageDecodeFailed() {
+                }
+            }).start()
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        FuckApp.fuckSelf()
     }
 }
