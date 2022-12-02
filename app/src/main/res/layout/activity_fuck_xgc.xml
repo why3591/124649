@@ -103,6 +103,24 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="529px"
+            android:layout_height="529px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="928px"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="长按此处后选择你的健康码截图"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_green_code"
+            android:layout_width="529px"
+            android:layout_height="529px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="928px"
+            android:scaleType="fitXY" />
+
         <View
             android:id="@+id/btn_scan"
             android:layout_width="match_parent"

@@ -24,6 +24,13 @@ import kotlin.random.Random
 
 class FuckXGCLocationActivity : AppCompatActivity() {
 
+    companion object {
+        private var cacheLocName: String? = null
+        private var cacheLocType: String? = null
+        private var cacheLocCity: String? = null
+        private var cacheLocAddr: String? = null
+    }
+
     private val prefs by lazy { PreferenceManager.getDefaultSharedPreferences(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +40,9 @@ class FuckXGCLocationActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        updateCurLoc()
+        updateCurLoc(true)
 
-        findViewById<View>(R.id.lyt_loc_info)?.apply {
+        val locInfo2 = findViewById<View>(R.id.lyt_loc_info2).apply {
             fun showImportDialog() {
                 val inputEditTextField = EditText(this@FuckXGCLocationActivity).apply {
                     hint = "每个地点信息内不同字段用@#分隔，不同地点信息之间用&*分隔，没理解的话可以先手动新建几个地点再来查看导入/导出"
@@ -91,6 +98,9 @@ class FuckXGCLocationActivity : AppCompatActivity() {
                 }.setTitle("选择当前地点").show()
                 true
             }
+        }
+        findViewById<View>(R.id.lyt_loc_info)?.setOnLongClickListener {
+            locInfo2.performLongClick()
         }
 
         findViewById<TextView>(R.id.tv_loc_username)?.apply {
@@ -207,20 +217,37 @@ class FuckXGCLocationActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateCurLoc() {
+    private fun updateCurLoc(init: Boolean = false) {
         val k = prefs.getString("spk_cur_loc_k", null) ?: return
         val v = prefs.getString(k, null) ?: return
         val vs = v.split("@#")
         runCatching {
-            findViewById<TextView>(R.id.tv_loc_name)?.text = vs[0]
-            findViewById<TextView>(R.id.tv_loc_type)?.text = vs[1]
-            findViewById<TextView>(R.id.tv_loc_city)?.text = vs[2]
-            findViewById<TextView>(R.id.tv_loc_addr)?.text = vs[3]
+            if (init) {
+                findViewById<TextView>(R.id.tv_loc_name)?.text = cacheLocName ?: vs[0]
+                findViewById<TextView>(R.id.tv_loc_type)?.text = cacheLocType ?: vs[1]
+                findViewById<TextView>(R.id.tv_loc_city)?.text = cacheLocCity ?: vs[2]
+                findViewById<TextView>(R.id.tv_loc_addr)?.text = cacheLocAddr ?: vs[3]
+            } else {
+                findViewById<TextView>(R.id.tv_loc_name)?.text = vs[0]
+                findViewById<TextView>(R.id.tv_loc_type)?.text = vs[1]
+                findViewById<TextView>(R.id.tv_loc_city)?.text = vs[2]
+                findViewById<TextView>(R.id.tv_loc_addr)?.text = vs[3]
+            }
         }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         startActivity(Intent(this, FuckXGCActivity::class.java))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        runCatching {
+            cacheLocName = findViewById<TextView>(R.id.tv_loc_name)?.text.toString()
+            cacheLocType = findViewById<TextView>(R.id.tv_loc_type)?.text.toString()
+            cacheLocCity = findViewById<TextView>(R.id.tv_loc_city)?.text.toString()
+            cacheLocAddr = findViewById<TextView>(R.id.tv_loc_addr)?.text.toString()
+        }
     }
 }
