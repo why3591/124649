@@ -20,7 +20,7 @@
 
 ![](https://raw.githubusercontent.com/fuckxmz/LoveGreenCode/master/img4.png)
 
-四、回到刚才的Action页面，点击最新的那个Workflow，然后在最下面就能下载Apk了（有的手机不让安装debug包，可以在电脑上使用命令 `adb install -t xxx.apk` 安装）。
+四、回到刚才的Action页面，点击最新的那个Workflow，然后在最下面就能下载Apk了（最新脚本已更新为带签名Release包，若系统还不让装，可以在电脑上使用命令 `adb install -t xxx.apk` 安装）。
 
 ![](https://raw.githubusercontent.com/fuckxmz/LoveGreenCode/master/img5.png)
 
