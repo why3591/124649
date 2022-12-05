@@ -130,6 +130,10 @@ class FuckXGCLocationActivity : AppCompatActivity() {
             val date = Date(nowTime)
             text = sdf.format(date)
         }
+
+        findViewById<View>(R.id.iv_loc_track_card)?.setOnClickListener {
+            startActivity(Intent(this, FuckTrackCardActivity::class.java))
+        }
     }
 
     private fun showEditLocInfoDialog(spKey: String? = null) {

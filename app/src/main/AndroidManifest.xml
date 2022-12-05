@@ -36,6 +36,11 @@
             android:exported="false"
             android:launchMode="singleTask" />
 
+        <activity
+            android:name=".FuckTrackCardActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+
     </application>
 
 </manifest>

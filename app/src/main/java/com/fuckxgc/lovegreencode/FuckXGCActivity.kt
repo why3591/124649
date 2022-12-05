@@ -234,6 +234,10 @@ class FuckXGCActivity : AppCompatActivity() {
             val date = Date(nowTime)
             text = sdf.format(date)
         }
+
+        findViewById<View>(R.id.btn_track_card)?.setOnClickListener {
+            startActivity(Intent(this, FuckTrackCardActivity::class.java))
+        }
     }
 
     private fun updateTime() = lifecycleScope.launchWhenCreated {
