@@ -172,6 +172,14 @@
             android:textColor="@android:color/white"
             android:textSize="9.67sp" />
 
+        <View
+            android:id="@+id/btn_track_card"
+            android:layout_width="250px"
+            android:layout_height="250px"
+            android:layout_gravity="end"
+            android:layout_marginTop="2130px"
+            android:layout_marginEnd="36dp" />
+
     </FrameLayout>
 
 </androidx.core.widget.NestedScrollView>
